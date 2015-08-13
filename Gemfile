@@ -14,6 +14,12 @@ gem 'pg'
 group :development, :test do
   #gem 'debugger' # for ruby < 2.0
   #gem 'byebug' # for ruby >= 2.0
+
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'cucumber-rails', require: false
+  gem 'capybara-screenshot'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required

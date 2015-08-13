@@ -6,8 +6,7 @@ development:
   username: user
   password: MySuperPassword
 
-
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: db_corm_test
@@ -23,3 +22,5 @@ production:
   username: user
   password: MyBeterSuperPassword
 
+cucumber:
+  <<: *test
