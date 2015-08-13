@@ -12,7 +12,7 @@ gem 'unicode_utils'
 gem 'pg'
 
 group :development, :test do
-  gem 'debugger' # for ruby < 2.0
+  #gem 'debugger' # for ruby < 2.0
   #gem 'byebug' # for ruby >= 2.0
 end
 
