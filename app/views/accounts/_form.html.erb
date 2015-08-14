@@ -1,4 +1,4 @@
-<%= form_for(@account, :html => { :class => "well "}) do |f| %>
+<%= simple_form_for(@account, :html => { :class => "well "}) do |f| %>
   <% if @account.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -11,64 +11,20 @@
     </div>
   <% end %>
 
- <form class="well form-inline">
-  <div class="field">
-	  <div class="span2"> Société : </div> <%= f.text_field :company ,{ :class => 'required'}  %><span class="req" />
-  </div>
-
-  <% if @account.persisted? %>
-  <div class="field">
-    <div class="span2"> Statut : </div> <%= f.select :active, options_for_select([["Actif", true], ["Inactif", false]], selected: @account.active) %>
-  </div>
-  <% end %>
-
-  <div class="field">
-    <div class="span2"> Adresse : </div> <%= f.text_field :adress1 %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Adresse (suite) : </div> <%= f.text_field :adress2 %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> CP : </div> <%= f.text_field :zip %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> Ville : </div> <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> Pays : </div> <%= f.text_field :country %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> Tel : </div> <%= f.text_field :tel %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> Fax : </div> <%= f.text_field :fax %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> E-mail : </div> <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-   <div class="span2"> Site web : </div> <%= f.text_field :web %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Origine : </div> <%= f.collection_select :origin_id, Origin.order('name ASC').all, :id, :name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Activité : </div> <%= f.collection_select :activity_id, Activity.order('name ASC').all, :id, :name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Genre : </div> <%= f.select :category, Account::CATEGORIES%>
-  </div>
+  <%= f.input :company %>
+  <%= f.input :active, collection: [[ Account.human_attribute_name('active.active'), true], [Account.human_attribute_name('active.inactive'), false]], include_blank: false if @account.persisted? %>
+  <%= f.input :adress1 %>
+  <%= f.input :adress2 %>
+  <%= f.input :zip %>
+  <%= f.input :city %>
+  <%= f.input :country %>
+  <%= f.input :tel %>
+  <%= f.input :fax %>
+  <%= f.input :email %>
+  <%= f.input :web %>
+  <%= f.association :origin %>
+  <%= f.association :activity %>
+  <%= f.input :category, collection: Account::CATEGORIES, include_blank: false %>
 
   <div class="field">
     <div class="span2"> Tag(s) associé(s) : </div>
@@ -80,76 +36,38 @@
     <%= render "modal_tags" %>
   </div>
 
-  <div class="field">
-    <div class="span2"><%= f.label :turnover %> :</div> <div class="input-append"><%= f.text_field :turnover %><span class="add-on"><%= t('number.currency.format.unit') %></span></div>
-  </div>
+  <%= f.input :turnover, as: :currency %>
+  <%= f.input :projected_turnover, as: :currency %>
+  <%= f.input :registration_number %>
+  <%= f.input :vat_number %>
+  <%= f.input :business_sector_code %>
+  <%= f.input :identifier %>
+  <%= f.input :accounting_code %>
+  <%= f.association :payment_term %>
+  <%= f.input :periodicity_billing %>
+  <%= f.association :user, collection: @users %>
+  <%= f.input :notes %>
 
   <div class="field">
-    <div class="span2"><%= f.label :projected_turnover %> :</div> <div class="input-append"><%= f.text_field :projected_turnover %><span class="add-on"><%= t('number.currency.format.unit') %></span></div>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :registration_number %> :</div> <%= f.text_field :registration_number %>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :vat_number %> :</div> <%= f.text_field :vat_number %>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :business_sector_code %> :</div> <%= f.text_field :business_sector_code %>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :identifier %> :</div> <%= f.text_field :identifier %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Code comptable : </div> <%= f.text_field :accounting_code %>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :payment_term %> :</div> <%= f.collection_select :payment_term_id, PaymentTerm.order('name ASC').all, :id, :name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <div class="span2"><%= f.label :periodicity_billing %> :</div> <%= f.text_field :periodicity_billing %>
-  </div>
-
-  <div class="field">
-    <div class="span2"> Collaborateur : </div> <%= f.collection_select :user_id, @users, :id, :full_name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <div class="span2">Notes : </div> <%=f.text_area :notes , :display_with => :simple_format, :rows => "5", :style => 'width: 50%;' %>
-  </div>
-
-  <br />
-
-	<div class="field">
     <% if !@account.id.nil? %>
-		<div class="span9"> Créé par : <%= @account.author.full_name %>, le </strong><%= @account.created_at.strftime("%d/%m/%y à %H:%M") %>. </div> <br />
+      <div class="span9"> Créé par : <%= @account.author.full_name %>, le </strong><%= @account.created_at.strftime("%d/%m/%y à %H:%M") %>. </div> <br />
 
-		<% if !@account.modified_by.nil? %>
-			<div class="span9"> Dernièrement modifié par : <%= @account.editor.full_name %>, le <%= @account.updated_at.strftime("%d/%m/%y à %H:%M") %>. </div> <br />
+      <% if !@account.modified_by.nil? %>
+        <div class="span9"> Dernièrement modifié par : <%= @account.editor.full_name %>, le <%= @account.updated_at.strftime("%d/%m/%y à %H:%M") %>. </div> <br />
+      <% else %>
+      <% end %>
 
-		<% else %>
-		<% end %>
+    <% end %>
+  </div>
 
-	<% end %>
-	</div>
-
-	<hr />
+  <hr />
 
   <div class="row">
-    <%= if !@account.id.nil? then f.button 'Modifier le compte', :type => :submit, :class =>"btn btn-primary",:id =>"account_validate_form" else f.button 'Créer un compte', :type => :submit, :class =>"btn btn-primary",:id =>"account_validate_form" end%>
-  <% if current_user.has_role?(:admin) or current_user.has_role?(:super_user) %>
+    <%= f.submit class: 'btn btn-primary' %>
+    <% if current_user.has_role?(:admin) or current_user.has_role?(:super_user) %>
       <%= if !@account.id.nil? then  link_to '<i class="fa fa-trash fa-lg"></i>'.html_safe, @account,:title => "Supprimer le compte", :confirm => 'Attention : La suppression du compte entraine la suppression de tous les éléments liés à ce compte (contacts, évènements, devis, documents...) ! Confirmez-vous la suppression ?', :class =>"pull-right btn", :method => :delete end %>
-  <% end %>
-
+    <% end %>
   </div>
-
-</form>
 <% end %>
 
 

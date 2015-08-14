@@ -43,6 +43,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'jquery-validation-rails'
 gem 'nested_form'
+gem 'simple_form'
 gem 'jquery-fileupload-rails'
 
 gem 'devise'

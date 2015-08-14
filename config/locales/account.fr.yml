@@ -1,0 +1,38 @@
+fr:
+  activerecord:
+    models:
+      account: Compte
+    attributes:
+      account/active:
+        active: Actif
+        inactive: Inactif
+      account:
+        accounting_code: Code comptable
+        active: Actif
+        adress1: Adresse
+        adress2: Adresse (suite)
+        business_sector_code: Code NAF
+        category: Catégorie
+        city: Ville
+        company: Société
+        country: Pays
+        email: E-mail
+        fax: Fax
+        identifier: Identifiant commercial
+        notes: Notes
+        origin: Origine
+        payment_term: Conditions de règlement
+        periodicity_billing: Périodicité de facturation
+        projected_turnover: C.A. prévisionnel
+        registration_number: SIRET
+        tel: Tél
+        turnover: Chiffre d'affaires
+        user: Collaborateur
+        vat_number: Identifiant TVA
+        web: Site web
+        zip: CP
+  helpers:
+    submit:
+      account:
+        create: Créer un compte
+        update: Modifier le compte
