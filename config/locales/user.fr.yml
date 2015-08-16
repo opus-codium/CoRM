@@ -4,9 +4,15 @@ fr:
       user: Utilisateur
     attributes:
       user:
-        email: Adresse e-mail
+        email: E-mail
+        enabled: Compte activé
         forename: Prénom
+        locale: Langue
         login_name: Identifiant
+        mobile: Mobile
         password: Mot de passe
         password_confirmation: Confirmation
-        surname: Nom de famille
+        role: Droits d'accès
+        role: Droits d'accès
+        surname: Nom
+        tel: Tél fixe

@@ -9,6 +9,7 @@ fr:
       account:
         accounting_code: Code comptable
         active: Actif
+        activity: Activité
         adress1: Adresse
         adress2: Adresse (suite)
         business_sector_code: Code NAF

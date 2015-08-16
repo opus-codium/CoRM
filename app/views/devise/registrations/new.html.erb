@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <%= simple_form_for(@user, :as => resource_name, :url => users_path, :html => { :method => :post,:class => "well" }) do |f| %>
+  <%= simple_form_for(@user, as: resource_name, url: users_path, html: { method: :post, class: 'well form-horizontal' }) do |f| %>
     <%= devise_error_messages! %>
 
     <%= f.input :login_name, hint: ("@#{Setting.ad_domain_value}" if Setting.ad_enabled?) %>
@@ -20,11 +20,20 @@
 
     <% if !@first_creation %>
       <% if current_user.has_role?(:admin) %>
-        <%= f.association :roles %>
+        <div class="control-group">
+          <label class="control-label" for="role"><%= User.human_attribute_name(:role) %></label>
+          <div class="controls">
+            <%= select_tag(:role, options_for_select(Role.list_all, :selected => @user_role_name))  %>
+          </div>
+        </div>
       <% end %>
       <%= f.input :enabled %>
     <% end %>
 
-    <%= f.submit class: 'btn btn-primary' %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
 </div>

@@ -1,46 +1,58 @@
+
+form.form-horizontal {
+  .control-group {
+    margin-bottom: 9px;
+    label.control-label:after {
+      content: ' :';
+    }
+    input + .help-block {
+      margin-top: 3px;
+    }
+  }
+}
 form {
-    .row {
-        margin: 0 0 0 -10px;
-        div, p, a, ul, li, select, input, textarea, label {
-          display: inline-block;
-		    margin-bottom: 0;
+  .row {
+     margin: 0 0 0 -10px;
+     div, p, a, ul, li, select, input, textarea, label {
+       display: inline-block;
+       margin-bottom: 0;
+     }
+     &.row-center {
+       margin-left: auto;
+       margin-right: auto;
+     }
+     &.row-fluid {
+       width: 97%;
+     }
+    .typeahead {
+      display: block;
+      li {
+        display: list-item;
+        a {
+          display: block;
         }
-        &.row-center {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        &.row-fluid {
-            width: 97%;
-        }
-	    .typeahead {
-	        display: block;
-		    li {
-			    display: list-item;
-			    a {
-				    display: block;
-			    }
-		    }
-	  }
+      }
+    }
   }
   .field {
-	> div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
-		margin-bottom: 9px;
-	}
-	> .span2 {
-		text-align: right;
-		padding-right: 8px;
-		margin-top: 0.45%;
-	}
-		label {
-			&.error {
-				/* This field is required */
-				display: inline-block;
-				vertical-align: middle;
-				color: $form-error-on-require-field-color;
-				font-weight: 900;
-				padding-left: 15px;
-			}
-		}
+    > div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
+      margin-bottom: 9px;
+    }
+    > .span2 {
+      text-align: right;
+      padding-right: 8px;
+      margin-top: 0.45%;
+    }
+    label {
+      &.error {
+        /* This field is required */
+        display: inline-block;
+        vertical-align: middle;
+        color: $form-error-on-require-field-color;
+        font-weight: 900;
+        padding-left: 15px;
+      }
+    }
     &.small-date {
       width: 160px;
     }
@@ -51,14 +63,14 @@ form {
       width: 99%;
     }
     p {
-			&.full {
-				display: block;
+      &.full {
+        display: block;
         input {
           display: block;
           width: 99%;
         }
-			}
-		}
+      }
+    }
   }
 }
 
@@ -93,10 +105,10 @@ label {
 }
 
 span.req:before {
-	content: " *";
-	font-size: 20px;
-	color: $form-error-on-require-field-color;
-	padding-left: 5px;
+  content: " *";
+  font-size: 20px;
+  color: $form-error-on-require-field-color;
+  padding-left: 5px;
 }
 
 .small-fields {
@@ -109,14 +121,14 @@ span.req:before {
 }
 
 form#new_event {
-	.row {
-		margin-bottom: 2px;
-		.field {
-			> div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
-				margin-bottom: 0 !important;
-			}
-		}
-	}
+  .row {
+    margin-bottom: 2px;
+    .field {
+      > div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
 }
 
 
@@ -126,17 +138,17 @@ form#new_event {
         padding: 0;
         width: 97%;
     }
-	.field {
-		margin-bottom: 2px;
-		> div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
-			margin-bottom: 0 !important;
-		}
-	}
+  .field {
+    margin-bottom: 2px;
+    > div, > p, > a, > ul, > li, > select, > input, > textarea, > label {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 
 .small-message {
-    vertical-align: middle;
-    font-family: Helvetica;
-    color: green;
-    padding-left: 20px;
+  vertical-align: middle;
+  font-family: Helvetica;
+  color: green;
+  padding-left: 20px;
 }

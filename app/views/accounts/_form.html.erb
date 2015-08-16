@@ -1,4 +1,4 @@
-<%= simple_form_for(@account, :html => { :class => "well "}) do |f| %>
+<%= simple_form_for(@account, html: { class: 'well form-horizontal' }) do |f| %>
   <% if @account.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -26,14 +26,15 @@
   <%= f.association :activity %>
   <%= f.input :category, collection: Account::CATEGORIES, include_blank: false %>
 
-  <div class="field">
-    <div class="span2"> Tag(s) associé(s) : </div>
-    <%= select_tag :display_account_tag, options_from_collection_for_select(@account.tags.order('name ASC').all, "id", "name"), {:size => 6, :multiple => true} %>
-    <a id="account_add_button" class="btn btn-success btn-mini" data-toggle="modal" href="#account_tag_modal" style="margin-bottom: 1em; margin-left: 2em;">Modifier Tag</a>
-  </div>
-
-  <div class="modal hide fade" id="account_tag_modal" style="width: 900px; margin-left: -450px;">
-    <%= render "modal_tags" %>
+  <div class="control-group">
+    <label class="control-label" for="display_account_tag">Tag(s) associé(s)</label>
+    <div class="controls">
+      <%= select_tag :display_account_tag, options_from_collection_for_select(@account.tags.order('name ASC').all, "id", "name"), {:size => 6, :multiple => true} %>
+      <a id="account_add_button" class="btn btn-success btn-mini" data-toggle="modal" href="#account_tag_modal" style="margin-bottom: 1em; margin-left: 2em;">Modifier Tag</a>
+      <div class="modal hide fade" id="account_tag_modal" style="width: 900px; margin-left: -450px;">
+        <%= render "modal_tags" %>
+      </div>
+    </div>
   </div>
 
   <%= f.input :turnover, as: :currency %>
@@ -45,8 +46,8 @@
   <%= f.input :accounting_code %>
   <%= f.association :payment_term %>
   <%= f.input :periodicity_billing %>
-  <%= f.association :user, collection: @users %>
-  <%= f.input :notes %>
+  <%= f.association :user, collection: @users, label_method: :full_name %>
+  <%= f.input :notes, input_html: { rows: 6 } %>
 
   <div class="field">
     <% if !@account.id.nil? %>
