@@ -28,7 +28,12 @@ function display(id) {
       <div class="message row-fluid">
         <%= render :partial => 'event_message', :locals => { :e => e, :css_class => 'content' } %>
         <p class="time">
-          il y a <%= distance_of_time_in_words_to_now(e.date_begin) %>
+	  <% if e.date_begin.past? %>
+            il y a
+	  <% else %>
+	    dans
+	  <% end %>
+	  <%= distance_of_time_in_words_to_now(e.date_begin) %>
         </p>
        <p class="content">
         N° <%= e.id %>
