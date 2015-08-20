@@ -5,8 +5,11 @@ fr:
     attributes:
       user:
         email: Adresse e-mail
+        enabled: Compte activé
         forename: Prénom
         login_name: Identifiant
         password: Mot de passe
         password_confirmation: Confirmation
+        role: Droits d'accès
         surname: Nom de famille
+        tel: Tél fixe
