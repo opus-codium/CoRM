@@ -5,14 +5,14 @@
 
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2.0'
 # for multi-byte char
 gem 'unicode_utils'
 # Database Adapter
 gem 'pg'
 
 group :development, :test do
-  gem 'debugger' # for ruby < 2.0
+  #gem 'debugger' # for ruby < 2.0
   #gem 'byebug' # for ruby >= 2.0
 end
 
@@ -26,7 +26,7 @@ group :assets do
 end
 
 gem 'json'
-gem 'therubyracer'  # comment this line for windows
+#gem 'therubyracer'  # comment this line for windows
 
 gem 'sass-rails', '~> 3.2'
 
